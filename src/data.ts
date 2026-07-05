@@ -1,13 +1,13 @@
-import { Project, TimelineEvent, SkillCategory, ContributionDay } from './types';
+import { Project, TimelineEvent, SkillCategory, ContributionDay, ProfileMetric, FocusArea } from './types';
 
 export const PERSONAL_INFO = {
   name: "E1S4",
   tagline: "Building, Breaking, & Learning",
-  subtitle: "Turning bugs into features and curiosity into code.",
-  bio: "I like building small tools that solve real problems. Most of my projects start with: 'I wonder how this works...', and usually end with me accidentally learning far more than I expected. You'll mostly find me working on security tools, homelabs, Python scripts, and TypeScript/JavaScript experiments.",
+  subtitle: "Security-minded builder shipping polished web tools, automation, and creative browser experiments.",
+  bio: "I build compact systems that make messy technical ideas easier to inspect: honeypots that expose attacker behavior, finance dashboards that turn spreadsheets into usable workflows, and browser experiments that make interaction feel tangible. Most projects start with a simple question — how does this really work? — and become public, documented repositories I can keep refining.",
   location: "Homelab / Cloud",
   githubUrl: "https://github.com/e-1-s-4",
-  email: "eisabukhri@gmail.com", // Found in user email metadata!
+  email: "eisabukhri@gmail.com",
   philosophies: [
     {
       title: "Building to Learn",
@@ -24,6 +24,32 @@ export const PERSONAL_INFO = {
   ]
 };
 
+
+export const PROFILE_METRICS: ProfileMetric[] = [
+  { label: "Public repos", value: "19", detail: "Security tools, web apps, automations, and browser experiments" },
+  { label: "Featured builds", value: "4", detail: "Pinned flagship projects with demos, docs, or active iteration" },
+  { label: "Primary stack", value: "TS + Python", detail: "React interfaces, Dockerized utilities, and scripting workflows" },
+  { label: "Focus", value: "Homelab", detail: "Practical security monitoring and self-hosted experimentation" }
+];
+
+export const FOCUS_AREAS: FocusArea[] = [
+  {
+    title: "Security Automation",
+    description: "Honeypots, log pipelines, and local dashboards for understanding real network noise before it becomes risk.",
+    signal: "SSH traps · Docker · Python"
+  },
+  {
+    title: "Product Interfaces",
+    description: "Responsive React and vanilla web apps that transform everyday workflows into fast, readable experiences.",
+    signal: "React · TypeScript · Tailwind"
+  },
+  {
+    title: "Creative Systems",
+    description: "Canvas, CSS, and keyboard-driven experiments that explore how browsers can feel tactile and alive.",
+    signal: "Canvas · CSS animation · UX"
+  }
+];
+
 export const PROJECTS: Project[] = [
   {
     id: "baitbox",
@@ -37,7 +63,9 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/e-1-s-4/baitbox",
     category: "Security",
     featured: true,
-    builtAt: "July 2026"
+    builtAt: "July 2026",
+    status: "Active",
+    impact: "Turns noisy auth attempts into readable attacker sessions for homelab defenders."
   },
   {
     id: "FamilyFinance",
@@ -51,7 +79,9 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/e-1-s-4/FamilyFinance",
     category: "Web Apps",
     featured: true,
-    builtAt: "July 2026"
+    builtAt: "July 2026",
+    status: "Active",
+    impact: "Makes family budgeting easier to scan than a spreadsheet."
   },
   {
     id: "Aether",
@@ -65,7 +95,9 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/e-1-s-4/Aether",
     category: "Games & Creative",
     featured: true,
-    builtAt: "July 2026"
+    builtAt: "July 2026",
+    status: "Prototype",
+    impact: "Explores collaborative design surfaces and creative handoff patterns."
   },
   {
     id: "nexuspro",
@@ -80,7 +112,9 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://nexusvibe.vercel.app/",
     category: "Web Apps",
     featured: true,
-    builtAt: "July 2026"
+    builtAt: "July 2026",
+    status: "Live",
+    impact: "Packages collaborative workflow ideas into a fast, deployable web hub."
   },
   {
     id: "Interactive-Canvas-Art-Generator",
@@ -188,6 +222,7 @@ export const PROJECTS: Project[] = [
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Programming Languages",
+    summary: "Daily drivers for automation, interfaces, and practical scripting.",
     skills: [
       { name: "Python", level: 90, iconName: "python" },
       { name: "TypeScript", level: 85, iconName: "typescript" },
@@ -198,6 +233,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "Technologies & Frameworks",
+    summary: "Tools used to ship responsive apps and self-hostable projects.",
     skills: [
       { name: "React", level: 85, iconName: "react" },
       { name: "Node.js", level: 80, iconName: "nodejs" },
@@ -207,6 +243,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "Security & Infrastructure",
+    summary: "Homelab operations, defensive visibility, and release workflows.",
     skills: [
       { name: "Linux Administration", level: 82, iconName: "linux" },
       { name: "Homelab & Networking", level: 85, iconName: "server" },

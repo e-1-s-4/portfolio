@@ -41,7 +41,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           {getCategoryIcon(project.category)}
           <span>{project.category}</span>
         </div>
-        <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">{project.builtAt}</span>
+        <div className="flex items-center gap-1.5">
+          {project.status && (
+            <span className="text-[9px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/15 rounded-full px-2 py-0.5">
+              {project.status}
+            </span>
+          )}
+          <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">{project.builtAt}</span>
+        </div>
       </div>
 
       {/* Title */}
@@ -53,6 +60,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
           {project.description}
         </p>
       </div>
+
+      {project.impact && (
+        <div className="relative z-10 rounded-xl border border-cyan-500/15 bg-cyan-500/5 px-3 py-2 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+          <span className="font-mono font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Impact: </span>{project.impact}
+        </div>
+      )}
 
       {/* Tech Stack list */}
       <div className="flex flex-wrap gap-1.5 my-3 relative z-10">
