@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 import { ThemeProvider, useTheme } from './components/ThemeContext';
-import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, TIMELINE } from './data';
+import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES, TIMELINE, PROFILE_METRICS, FOCUS_AREAS } from './data';
 import { CanvasArt } from './components/CanvasArt';
 import { KeyboardHeatmap } from './components/KeyboardHeatmap';
 import { MusicVisualizer } from './components/MusicVisualizer';
@@ -163,8 +163,8 @@ function PortfolioContent() {
             </p>
           </div>
 
-          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed max-w-md">
-            I build lightweight security automation, modular web platforms, and interactive canvas tools to reverse engineer things and watch how they tick.
+          <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed max-w-xl">
+            I turn curiosity into shipped projects: defensive homelab tooling, clean product dashboards, and playful browser systems that make technical ideas easier to understand.
           </p>
 
           {/* Social and CTA buttons */}
@@ -194,20 +194,15 @@ function PortfolioContent() {
             </button>
           </div>
 
-          {/* Key Quick Stats (Authentic, public_repos: 19) */}
-          <div className="pt-6 border-t border-slate-150 dark:border-slate-900 flex gap-8">
-            <div>
-              <p className="text-2xl font-display font-bold text-slate-900 dark:text-white">19</p>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mt-1">Public Repositories</p>
-            </div>
-            <div>
-              <p className="text-2xl font-display font-bold text-slate-900 dark:text-white">3+</p>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mt-1">Honeypot Systems</p>
-            </div>
-            <div>
-              <p className="text-2xl font-display font-bold text-slate-900 dark:text-white">2026</p>
-              <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mt-1">Lab Established</p>
-            </div>
+          {/* Key Quick Stats */}
+          <div className="pt-6 border-t border-slate-150 dark:border-slate-900 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {PROFILE_METRICS.map((metric) => (
+              <div key={metric.label} className="rounded-2xl border border-slate-150 dark:border-slate-850 bg-slate-50/70 dark:bg-slate-900/60 p-3">
+                <p className="text-2xl font-display font-bold text-slate-900 dark:text-white">{metric.value}</p>
+                <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mt-1">{metric.label}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-2 leading-snug">{metric.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -334,6 +329,37 @@ function PortfolioContent() {
         </div>
       </section>
 
+      {/* Positioning Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16 space-y-8">
+        <div className="flex items-end justify-between gap-6 flex-wrap">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono text-[10px] font-bold uppercase tracking-wider mb-2">
+              Profile Signal
+            </div>
+            <h2 className="font-display font-bold text-3xl tracking-tight text-slate-900 dark:text-white">
+              What this portfolio communicates in 30 seconds
+            </h2>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2 leading-relaxed">
+              A sharper GitHub profile should immediately show what I build, why it matters, and which repositories are worth opening first.
+            </p>
+          </div>
+          <a href={PERSONAL_INFO.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/25 bg-cyan-500/10 px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/15 transition">
+            Open GitHub <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {FOCUS_AREAS.map((area, idx) => (
+            <div key={area.title} className="group rounded-2xl border border-slate-150 dark:border-slate-850 bg-white dark:bg-slate-950 p-5 shadow-sm hover:-translate-y-1 hover:border-cyan-500/40 transition-all">
+              <div className="w-10 h-10 rounded-2xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 flex items-center justify-center font-mono font-black mb-4">0{idx + 1}</div>
+              <h3 className="font-display font-bold text-slate-900 dark:text-white">{area.title}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-2">{area.description}</p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mt-4">{area.signal}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Interactive Generative Canvas Sandbox Section */}
       <section id="canvas" className="max-w-7xl mx-auto px-6 py-16 space-y-8">
         <div className="max-w-xl">
@@ -349,6 +375,33 @@ function PortfolioContent() {
         </div>
 
         <CanvasArt />
+      </section>
+
+      {/* Featured Repository Showcase */}
+      <section className="max-w-7xl mx-auto px-6 py-16 space-y-8 border-t border-slate-100 dark:border-slate-900">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-[10px] font-bold uppercase tracking-wider mb-2">
+            Start Here
+          </div>
+          <h2 className="font-display font-bold text-3xl tracking-tight text-slate-900 dark:text-white">
+            Featured Repository Launchpad
+          </h2>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1.5">
+            The strongest first-click projects: security, finance, collaboration, and creative systems.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {featuredProjects.map((project) => (
+            <a key={project.id} href={project.githubUrl} target="_blank" rel="noreferrer" className="rounded-2xl border border-slate-150 dark:border-slate-850 bg-white dark:bg-slate-950 p-5 hover:border-cyan-500/40 hover:-translate-y-1 transition-all shadow-sm group">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">{project.status || 'Active'}</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-500 transition" />
+              </div>
+              <h3 className="font-display font-bold text-slate-900 dark:text-white mt-3">{project.name}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-2">{project.impact || project.description}</p>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* Projects Repository Section */}
@@ -437,9 +490,12 @@ function PortfolioContent() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {SKILL_CATEGORIES.map((category, idx) => (
               <div key={idx} className="space-y-4">
-                <h4 className="text-[11px] font-mono uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">
-                  {category.title}
-                </h4>
+                <div>
+                  <h4 className="text-[11px] font-mono uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">
+                    {category.title}
+                  </h4>
+                  {category.summary && <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{category.summary}</p>}
+                </div>
                 <div className="space-y-3.5 bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-150 dark:border-slate-850 shadow-sm">
                   {category.skills.map((skill, sIdx) => (
                     <div key={sIdx} className="space-y-1">
