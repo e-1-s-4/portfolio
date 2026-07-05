@@ -1,0 +1,6 @@
+{
+  "name": "E1S4 Portfolio",
+  "description": "The professional, highly interactive portfolio website of developer E1S4, featuring homelab security, Python automation, and modern web application showcases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
